@@ -17,6 +17,58 @@
 //       '### '
 //       '####'
 
-function steps(n) {}
+// // Option 1
+// function steps(n) {
+//   for (let row = 0; row < n; row++) {
+//     let stair = '';
+
+//     for (let column = 0; column < n; column++) {
+//       if (column <= row) {
+//         stair += '#';
+//       } else {
+//         stair += ' ';
+//       }
+//     }
+
+//     console.log(stair);
+//   }
+// }
+
+// Option 1 Pseudo Code
+// 1. Fron 0 to n (iterate through rows)
+//     1. Create an empty string, ‘stair’
+//     2. From 0 to n (iterate through columns)
+//         1. IF the current column is equal to or less than the current row
+//             1. Add a ‘#’ to ‘stair’
+//         2. ELSE
+//             1. Add a space to ’stair’
+//     3. Console log ‘stair’
+
+// Option 2
+function steps(n, row = 0, stair = '') {
+  if (n === row) {
+    return;
+  }
+
+  if (n === stair.length) {
+    console.log(stair);
+    return steps(n, row + 1)
+  }
+
+  if (stair.length <= row) {
+    stair += '#';
+  } else {
+    stair += ' ';
+  }
+
+  const add = stair.length <= row ? '#' : ' ';
+  steps(n, row, stair);
+}
+
+// Option 2 Pseudo Code
+// 1. If (row === n) then we have hit the end of our problem
+// 2. If the ‘stair’ string has a length === n then we are at the end of a row
+// 3. If the length of the stair string is less than or equal to the row number we’re working on, we add a ‘#’, otherwise add a space
+
 
 module.exports = steps;

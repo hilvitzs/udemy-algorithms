@@ -30,7 +30,7 @@ class Node {
     }
   }
 
-  // My Solution
+  // // My Solution
   // contains(data) {
   //   if (data === this.data) {
   //     return this;
@@ -43,19 +43,20 @@ class Node {
   //   }
   // }
 
-  contains(data) {
-    if (data === this.data) {
-      return this;
-    }
+  // // Solution 1
+  // contains(data) {
+  //   if (data === this.data) {
+  //     return this;
+  //   }
 
-    if (data < this.data && this.left) {
-      return this.left.contains(data);
-    } else if (data > this.data && this.right) {
-      return this.right.contains(data);
-    }
+  //   if (data < this.data && this.left) {
+  //     return this.left.contains(data);
+  //   } else if (data > this.data && this.right) {
+  //     return this.right.contains(data);
+  //   }
 
-    return null;
-  }
+  //   return null;
+  // }
 }
 
 

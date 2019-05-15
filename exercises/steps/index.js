@@ -59,6 +59,13 @@ function steps(n, row = 0, stair = '') {
   steps(n, row, stair + add);
 }
 
+// // Clever Solution
+// function steps(n) {
+//   for (let i = 1; i <= n; i++) {
+//     console.log('#'.repeat(i) + ' '.repeat(n-i));
+//   }  
+// }
+
 // Option 2 Pseudo Code
 // 1. If (row === n) then we have hit the end of our problem
 // 2. If the ‘stair’ string has a length === n then we are at the end of a row

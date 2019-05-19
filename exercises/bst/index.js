@@ -30,18 +30,18 @@ class Node {
     }
   }
 
-  // // My Solution
-  // contains(data) {
-  //   if (data === this.data) {
-  //     return this;
-  //   }
+  // My Solution
+  contains(data) {
+    if (data === this.data) {
+      return this;
+    }
 
-  //   if (data < this.data) {
-  //     return this.left ? this.left.contains(data) : null;
-  //   } else if (data > this.data) {
-  //     return this.right ? this.right.contains(data) : null;
-  //   }
-  // }
+    if (data < this.data) {
+      return this.left ? this.left.contains(data) : null;
+    } else if (data > this.data) {
+      return this.right ? this.right.contains(data) : null;
+    }
+  }
 
   // // Solution 1
   // contains(data) {

@@ -66,33 +66,83 @@
 
 // matrix(2)
 
-function matrix(n) {
-  let array = makeArray(n * n, []);
-  let chunked = chunk(array, n);
+// // matrix(3)
+// [
+//   [1,2,3],
+//   [4,5,6],
+//   [7,8,9]
+// ]
 
-  console.log(chunked);
-}
+// [1,2,3,6,9,8,7,4,5]
 
-function chunk(array, size) {
-  const chunked = [];
-  let index = 0;
+// function matrix(n) {
+//   let array = makeArray(n * n, []);
+//   let chunked = chunk(array, n);
 
-  while (index < array.length) {
-    chunked.push(array.slice(index, index + size));
-    index += size;
-  }
+//   let spir = [];
 
-  return chunked;
-}
+//   while (chunked.length > 0) {
+//     if (chunked.length === 1) {
+//       spir = spir.concat(chunked[0]);
+//       break;
+//     }
 
-function makeArray(number, array) {
-  if (number > 0) {
-    array.unshift(number);
-    makeArray(number - 1, array);
-  }
+//     let tr = topLayer(chunked);
+//     spir = spir.concat(tr);
 
-  return array;
-}
+//     let br = bottomLayer(chunked);
+//     spir = spir.concat(br);
+//   }
+
+//   return spir;
+// }
+
+// function chunk(array, size) {
+//   const chunked = [];
+//   let index = 0;
+
+//   while (index < array.length) {
+//     chunked.push(array.slice(index, index + size));
+//     index += size;
+//   }
+
+//   return chunked;
+// }
+
+// function makeArray(number, array) {
+//   if (number > 0) {
+//     array.unshift(number);
+//     makeArray(number - 1, array);
+//   }
+
+//   return array;
+// }
+
+// function topLayer(matrix) {
+//   let top = matrix.splice(0, 1)[0];
+
+//   let right = [];
+
+//   for (let i = 0; i < matrix.length; i++) {
+//     let element = matrix[i].splice(-1, 1)[0];
+//     right.push(element);
+//   }
+
+//   return top.concat(right);
+// }
+
+// function bottomLayer(matrix) {
+//   let bottom = matrix.splice(matrix.length - 1, 1)[0].reverse();
+
+//   let left = [];
+
+//   for (let i = 0; i < matrix.length; i++) {
+//     let element = matrix[i].splice(0, 1)[0];
+//     left.push(element);
+//   }
+
+//   return bottom.concat(left.reverse());
+// }
 
 // Option 1 Pseudo Code
 // 1. Create empty arrays of arrays called ‘results’
@@ -109,3 +159,74 @@ function makeArray(number, array) {
 //     5. …repeat for other two sides
 
 module.exports = matrix;
+
+
+function matrix(n) {
+  let array = makeArray(n*n, []);
+  let chunked = chunk(array, n);
+
+  let spiral = [];
+
+  while (chunked.length > 0) {
+    if (chunked.length === 1) {
+      spiral = spiral.concat(chunked[0]);
+      break;
+    }
+
+    let tl = topLayer(chunked);
+    spiral = spiral.concat(tl);
+
+    let bl = bottomLayer(chunked);
+    spiral = spiral.concat(bl);
+  }
+
+  console.log(spiral);
+  return spiral;
+}
+
+function makeArray(n, array) {
+  if (n > 0) {
+    array.unshift(n);
+    makeArray(n - 1, array);
+  }
+
+  return array;
+}
+
+function chunk(array, size) {
+  const chunked = [];
+  let index = 0;
+
+  while (index < array.length) {
+    chunked.push(array.slice(index, index + size));
+    index += size;
+  }
+
+  return chunked;
+}
+
+function topLayer(matrix) {
+  let top = matrix.splice(0, 1)[0];
+
+  let right = [];
+
+  for (let i = 0; i < matrix.length; i++) {
+    let element = matrix[i].splice(-1, 1)[0];
+    right.push(element);
+  }
+
+  return top.concat(right);
+}
+
+function bottomLayer(matrix) {
+  let bottom = matrix.splice(matrix.length - 1, 1)[0].reverse();
+  
+  let left = [];
+
+  for (let i = 0; i < matrix.length; i++) {
+    let element = matrix[i].splice(0, 1)[0];
+    left.push(element);
+  }
+
+  return bottom.concat(left.reverse());
+}
